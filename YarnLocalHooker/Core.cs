@@ -3,7 +3,7 @@ using Il2CppCsvHelper;
 using Il2CppSystem.Globalization;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(YarnLocalHooker.Core), "LocalizationHooker", "1.0.0", "IRUZZ", null)]
+[assembly: MelonInfo(typeof(YarnLocalHooker.Core), "YarnLocalHooker", "1.0.0", "IRUZZ", null)]
 [assembly: MelonGame("Nino", "project_nonmp")]
 
 namespace YarnLocalHooker
@@ -14,7 +14,7 @@ namespace YarnLocalHooker
 
         public override void OnInitializeMelon()
         {
-            LoggerInstance.Msg("[LocalizationHooker] Initialized.");
+            LoggerInstance.Msg("Initialized.");
             Config.Init();
 
 #if RELEASE
