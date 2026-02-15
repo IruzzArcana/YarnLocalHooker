@@ -13,7 +13,7 @@ namespace YarnLocalHooker
 
         public static void Init()
         {
-            category = MelonPreferences.CreateCategory("General");
+            category = MelonPreferences.CreateCategory("YarnLocalHooker");
             category.SetFilePath(m_cfg, false);
 
             category.LoadFromFile();
