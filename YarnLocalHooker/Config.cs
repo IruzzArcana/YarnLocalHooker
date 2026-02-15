@@ -7,6 +7,7 @@ namespace YarnLocalHooker
         private static MelonPreferences_Category category;
         private static MelonPreferences_Entry<string> filepath;
         private const string m_cfg = "UserData/loc.cfg";
+        private const string m_deffilepath = "localization.csv";
 
         public static string FilePath => filepath.Value;
 
@@ -15,18 +16,17 @@ namespace YarnLocalHooker
             category = MelonPreferences.CreateCategory("General");
             category.SetFilePath(m_cfg, false);
 
-            if (File.Exists(m_cfg))
+            category.LoadFromFile();
+
+            if (category.HasEntry("filepath"))
             {
-                category.LoadFromFile();
                 filepath = category.GetEntry<string>("filepath");
             }
-
-            if (filepath == null)
+            else
             {
-                filepath = category.CreateEntry("filepath", "localization.csv");
+                filepath = category.CreateEntry("filepath", m_deffilepath);
                 category.SaveToFile();
             }
         }
-
     }
 }
