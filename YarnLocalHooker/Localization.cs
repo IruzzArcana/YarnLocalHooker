@@ -10,17 +10,19 @@ namespace YarnLocalHooker
             Il2CppSystem.IO.StreamReader reader = null;
             CsvReader csv = null;
             loc = null;
+
+            if (!Il2CppSystem.IO.File.Exists(filepath))
+            {
+                Melon<Core>.Logger.Error($"{filepath} not found");
+                return;
+            }
+
             try
             {
-                reader = new Il2CppSystem.IO.StreamReader(filepath);
-                csv = new CsvReader(reader);
+                reader = new(filepath);
+                csv = new(reader);
                 loc = new();
 
-                if (!Il2CppSystem.IO.File.Exists(filepath))
-                {
-                    Melon<Core>.Logger.Error($"{filepath} not found");
-                    return;
-                }
                 csv.Configuration.CultureInfo = CultureInfo.InvariantCulture;
 
                 while (csv.Read())
@@ -36,11 +38,8 @@ namespace YarnLocalHooker
             }
             finally
             {
-                if (csv != null)
-                    csv.Dispose();
-
-                if (reader != null)
-                    reader.Dispose();
+                csv?.Dispose();
+                reader?.Dispose();
             }
         }
 
@@ -49,13 +48,15 @@ namespace YarnLocalHooker
             Il2CppSystem.IO.StreamReader reader = null;
             CsvReader csv = null;
             value = null;
+
+            if (!Il2CppSystem.IO.File.Exists(filepath))
+            {
+                MelonLogger.Error($"{filepath} not found");
+                return;
+            }
+
             try
             {
-                if (!Il2CppSystem.IO.File.Exists(filepath))
-                {
-                    MelonLogger.Error($"{filepath} not found");
-                    return;
-                }
                 reader = new(filepath);
                 csv = new(reader);
                 csv.Configuration.CultureInfo = CultureInfo.InvariantCulture;
@@ -78,11 +79,8 @@ namespace YarnLocalHooker
             }
             finally
             {
-                if (csv != null)
-                    csv.Dispose();
-
-                if (reader != null)
-                    reader.Dispose();
+                csv?.Dispose();
+                reader?.Dispose();
             }
         }
     }

@@ -376,4 +376,8 @@
 		<Compile Include="Core.cs" />
 		<Compile Include="Localization.cs" />
 	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;F:\Games\nonand2\Mods&quot;" />
+	</Target>
 </Project>
