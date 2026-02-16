@@ -374,5 +374,6 @@
 	<ItemGroup>
 		<Compile Include="Config.cs" />
 		<Compile Include="Core.cs" />
+		<Compile Include="Localization.cs" />
 	</ItemGroup>
 </Project>
