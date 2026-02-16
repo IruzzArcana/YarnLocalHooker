@@ -13,7 +13,7 @@ namespace YarnLocalHooker
 
             if (!Il2CppSystem.IO.File.Exists(filepath))
             {
-                Melon<Core>.Logger.Error($"{filepath} not found");
+                MelonLogger.Error($"{filepath} not found");
                 return;
             }
 
