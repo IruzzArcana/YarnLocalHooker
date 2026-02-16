@@ -7,11 +7,13 @@ namespace YarnLocalHooker
     {
         internal static void LoadCSV(string filepath, out Il2CppSystem.Collections.Generic.Dictionary<string, string> loc)
         {
+            Il2CppSystem.IO.StreamReader reader = null;
+            CsvReader csv = null;
             loc = null;
-            var reader = new Il2CppSystem.IO.StreamReader(filepath);
-            var csv = new CsvReader(reader);
             try
             {
+                reader = new Il2CppSystem.IO.StreamReader(filepath);
+                csv = new CsvReader(reader);
                 loc = new();
 
                 if (!Il2CppSystem.IO.File.Exists(filepath))
@@ -34,8 +36,11 @@ namespace YarnLocalHooker
             }
             finally
             {
-                csv.Dispose();
-                reader.Dispose();
+                if (csv != null)
+                    csv.Dispose();
+
+                if (reader != null)
+                    reader.Dispose();
             }
         }
 
