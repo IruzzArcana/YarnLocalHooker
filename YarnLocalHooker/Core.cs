@@ -30,13 +30,11 @@ namespace YarnLocalHooker
         {
 #if DEBUG
             Localization.GetLocalizedStringFromCSV(Config.FilePath, __0, out string value);
-            if (value != null)
-                __result = value;
 #else
             Core.loc.TryGetValue(__0, out string value);
+#endif
             if (value != null)
                 __result = value;
-#endif
         }
     }
 }
